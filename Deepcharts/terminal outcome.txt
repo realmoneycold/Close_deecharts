@@ -1,0 +1,55 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\WINDOWS\System32> cd "c:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app"
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $sw = [Diagnostics.Stopwatch]::StartNew()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $p = Start-Process -FilePath .\Deepchart.exe -PassThru -RedirectStandardError err.txt -RedirectStandardOutput out.txt
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Start-Sleep -Seconds 10
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $sw.Stop()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "=== DIAGNOSTIC ==="
+=== DIAGNOSTIC ===
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app>
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host ("Wall time: " + $sw.ElapsedMilliseconds + "ms")
+Wall time: 45863ms
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host ("HasExited: " + $p.HasExited)
+HasExited: True
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> if ($p.HasExited) { Write-Host ("ExitCode: 0x" + $p.ExitCode.ToString("X8") + " (" + $p.ExitCode + ")") } else { Write-Host "STILL ALIVE after 10s → WPF IS RUNNING, window is INVISIBLE (use ALT+TAB / Shift+Right-click-taskbar-icon→Move)"; try { $p.Kill() } catch {} }
+You cannot call a method on a null-valued expression.
+At line:1 char:21
++ ... asExited) { Write-Host ("ExitCode: 0x" + $p.ExitCode.ToString("X8") + ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "--- err.txt ---"; if (Test-Path err.txt) { Get-Content err.txt } else { Write-Host "(empty)" }
+--- err.txt ---
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+   at .cctor()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "--- out.txt ---"; if (Test-Path out.txt) { Get-Content out.txt } else { Write-Host "(empty)" }
+--- out.txt ---
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> cd "c:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app"
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $sw = [Diagnostics.Stopwatch]::StartNew()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $p = Start-Process -FilePath .\Deepchart.exe -PassThru -RedirectStandardError err.txt -RedirectStandardOutput out.txt
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Start-Sleep -Seconds 10
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> $sw.Stop()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "=== DIAGNOSTIC ==="
+=== DIAGNOSTIC ===
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host ("Wall time: " + $sw.ElapsedMilliseconds + "ms")
+Wall time: 10036ms
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host ("HasExited: " + $p.HasExited)
+HasExited: True
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> if ($p.HasExited) { Write-Host ("ExitCode: 0x" + $p.ExitCode.ToString("X8") + " (" + $p.ExitCode + ")") } else { Write-Host "STILL ALIVE after 10s → WPF IS RUNNING, window is INVISIBLE (use ALT+TAB / Shift+Right-click-taskbar-icon→Move)"; try { $p.Kill() } catch {} }
+You cannot call a method on a null-valued expression.
+At line:1 char:21
++ ... asExited) { Write-Host ("ExitCode: 0x" + $p.ExitCode.ToString("X8") + ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "--- err.txt ---"; if (Test-Path err.txt) { Get-Content err.txt } else { Write-Host "(empty)" }
+--- err.txt ---
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+   at .cctor()
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app> Write-Host "--- out.txt ---"; if (Test-Path out.txt) { Get-Content out.txt } else { Write-Host "(empty)" }
+--- out.txt ---
+PS C:\Users\mon1ycold\Documents\Deepcharts\Deepcharts\linux-deepcharts\app>

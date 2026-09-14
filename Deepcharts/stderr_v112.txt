@@ -1,0 +1,6 @@
+Unhandled exception. System.TypeInitializationException: The type initializer for 'VolAnalysis.Wrapping.WrapperStreamEditor' threw an exception.
+ ---> System.InvalidProgramException: Common Language Runtime detected an invalid program.
+   at VolAnalysis.Wrapping.WrapperStreamEditor..cctor()
+   --- End of inner exception stack trace ---
+   at VolAnalysis.Wrapping.WrapperStreamEditor.PresentConfiguration()
+   at .cctor()
